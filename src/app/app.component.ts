@@ -14,7 +14,7 @@ export class AppComponent {
   addTarefa(){
     this.items.push(this.tarefa);
   }
-  removeTarefa(item:any){
+  removeTarefa(item:string){
     this.items.splice(this.items.indexOf(item), 1);
   }
 }
