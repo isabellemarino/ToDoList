@@ -4,16 +4,26 @@
   </h1>
   <h2>To-Do List</h2>
 
-    <ul>
-      <li *ngFor="let item of items; let i = index">
-        {{item}} <button (click)="removeTarefa(item)">Remover</button>
-        <button>Edição1</button>
+  <ul>
 
+      <span *ngFor="let item of items; let i = index">
 
-       </li>
-    </ul>
+        <span *ngIf="estaEditando == i">
+          <input type="text"  name="a{{i}}" id="a{{i}}"
+                 (change)="editar($event, i)"
+                 value="{{item}}"
+                 (keydown.enter)="limpaEdit($event, i)" >
+        </span>
+        <span *ngIf="estaEditando != i">
+          <li>{{item}}
+            <button (click)="removeTarefa(item)">Remover</button>
+          <button (click)="editTarefa(i)">Edição</button></li>
+        </span>
 
-{{tarefa}}
+      </span>
+
+  </ul>
+
   <input type="text" [(ngModel)]="tarefa">
   <button (click)="addTarefa()">Adicionar</button>
 
